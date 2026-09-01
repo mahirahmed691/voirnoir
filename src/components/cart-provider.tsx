@@ -19,6 +19,7 @@ export type CartItem = {
 type CartContextValue = {
   items: CartItem[];
   itemCount: number;
+  ready: boolean;
   addItem: (slug: string, size: string) => void;
   setQuantity: (slug: string, size: string, quantity: number) => void;
   removeItem: (slug: string, size: string) => void;
@@ -46,8 +47,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [announcement, setAnnouncement] = useState("");
 
   useEffect(() => {
-    setItems(loadItems());
-    setReady(true);
+    const stored = loadItems();
+    const frame = requestAnimationFrame(() => {
+      setItems((current) => (current.length > 0 ? current : stored));
+      setReady(true);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -117,12 +122,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     () => ({
       items,
       itemCount,
+      ready,
       addItem,
       setQuantity,
       removeItem,
       clear,
     }),
-    [items, itemCount, addItem, setQuantity, removeItem, clear],
+    [items, itemCount, ready, addItem, setQuantity, removeItem, clear],
   );
 
   return (

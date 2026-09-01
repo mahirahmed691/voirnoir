@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { AddToCart } from "@/components/add-to-cart";
 import { CtaLink } from "@/components/brand";
+import { ProductGallery } from "@/components/product-gallery";
 import { formatPrice, getProduct, products } from "@/lib/catalog";
 
 type Props = PageProps<"/shop/[slug]">;
@@ -36,31 +37,7 @@ export default async function ProductPage({ params }: Props) {
     <main id="content" className="px-6 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
       <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
-          <div className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5 md:p-2">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[calc(2rem-0.375rem)] bg-ink-soft md:rounded-[calc(2rem-0.5rem)]">
-              <Image
-                src={product.images[0].src}
-                alt={product.images[0].alt}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          {product.images[1] ? (
-            <div className="mt-4 hidden overflow-hidden rounded-[1.75rem] border border-bone/10 lg:block">
-              <div className="relative aspect-[16/8]">
-                <Image
-                  src={product.images[1].src}
-                  alt={product.images[1].alt}
-                  fill
-                  sizes="55vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          ) : null}
+          <ProductGallery images={product.images} />
         </div>
 
         <div className="lg:col-span-5 lg:pt-8">
@@ -77,8 +54,47 @@ export default async function ProductPage({ params }: Props) {
           <p className="mt-8 max-w-[48ch] text-base leading-relaxed text-bone-dim">
             {product.description}
           </p>
-          <p className="mt-6 text-sm text-bone-dim">{product.fabric}</p>
           <AddToCart product={product} />
+
+          <dl className="mt-12 space-y-8 border-t border-bone/10 pt-10">
+            <div>
+              <dt className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
+                Known by hand
+              </dt>
+              <dd className="mt-3 max-w-[48ch] text-base leading-relaxed text-bone-dim">
+                {product.feel}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
+                Cloth
+              </dt>
+              <dd className="mt-3 max-w-[48ch] text-sm leading-relaxed text-bone-dim">
+                {product.fabric}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
+                Care
+              </dt>
+              <dd className="mt-3 max-w-[48ch] text-sm leading-relaxed text-bone-dim">
+                {product.care}
+              </dd>
+            </div>
+          </dl>
+
+          <p className="mt-10 text-sm text-bone-dim">
+            <Link href="/size" className="underline underline-offset-4 hover:text-bone">
+              Size guide
+            </Link>
+            <span aria-hidden="true"> · </span>
+            <Link
+              href="/shipping"
+              className="underline underline-offset-4 hover:text-bone"
+            >
+              Shipping
+            </Link>
+          </p>
         </div>
       </div>
 

@@ -7,7 +7,7 @@ import { useCart } from "@/components/cart-provider";
 import { formatPrice, getProduct } from "@/lib/catalog";
 
 export function CartView() {
-  const { items, setQuantity, removeItem } = useCart();
+  const { items, setQuantity, removeItem, ready } = useCart();
 
   const lines = items
     .map((item) => {
@@ -21,6 +21,14 @@ export function CartView() {
     (sum, line) => sum + line.product.pricePence * line.quantity,
     0,
   );
+
+  if (!ready) {
+    return (
+      <p className="text-lg text-bone-dim" aria-busy="true">
+        Opening the bag.
+      </p>
+    );
+  }
 
   if (lines.length === 0) {
     return (
@@ -123,11 +131,11 @@ export function CartView() {
             </span>
           </div>
           <p className="mt-6 text-sm leading-relaxed text-bone-dim">
-            Checkout through Printful is the next piece. For now, hold the bag
-            here, then write to us and we will take the order by hand.
+            Printful checkout is coming. Until then, request the order and we
+            will take it by hand. The bag is written into the message.
           </p>
           <div className="mt-8">
-            <CtaLink href="/contact">Request this order</CtaLink>
+            <CtaLink href="/contact#order">Request this order</CtaLink>
           </div>
         </div>
       </aside>

@@ -15,8 +15,9 @@ export default function ContactPage() {
             Write
           </h1>
           <p className="mt-8 max-w-[36ch] text-lg leading-relaxed text-bone-dim">
-            Orders, sizes, the story, or a greeting. This opens your mail app
-            to hello@voirnoir.co.uk.
+            Orders, sizes, the story, or a greeting. If the bag has garments
+            in it, they are included. This opens your mail app to
+            hello@voirnoir.co.uk.
           </p>
         </div>
         <div className="lg:col-span-6 lg:col-start-7 lg:pt-8">

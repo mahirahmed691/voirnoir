@@ -14,9 +14,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## What is here
 
-- Home, shop, product pages, story, bag, and contact
+- Home, shop, product pages, story, bag, contact, size guide, shipping, and privacy
 - A first drop of four garments (catalog in `src/lib/catalog.ts`)
-- Bag stored in the browser, ready to connect to Printful checkout later
+- Bag stored in the browser; requesting an order writes the bag into an email until Printful checkout is wired
 
 ## Printful next
 

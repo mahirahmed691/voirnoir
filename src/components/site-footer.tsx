@@ -48,15 +48,28 @@ export function SiteFooter() {
           <p className="text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim">
             House
           </p>
-          <p className="mt-4 text-sm leading-relaxed text-bone-dim">
-            voirnoir.co.uk
-            <br />
-            Printed on demand in the UK
-            <br />
-            <a href="mailto:hello@voirnoir.co.uk" className="hover:text-clay">
-              hello@voirnoir.co.uk
-            </a>
-          </p>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>
+              <Link href="/size" className="hover:text-clay">
+                Size guide
+              </Link>
+            </li>
+            <li>
+              <Link href="/shipping" className="hover:text-clay">
+                Shipping
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-clay">
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <a href="mailto:hello@voirnoir.co.uk" className="hover:text-clay">
+                hello@voirnoir.co.uk
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
