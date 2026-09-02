@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HousePage, HouseSection } from "@/components/house-page";
-import { ETSY_SHOP } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Shipping and returns",
@@ -14,47 +13,41 @@ export default function ShippingPage() {
     <HousePage
       eyebrow="House"
       title="Post."
-      lede="Nothing sits in a warehouse. When you order, Printful makes the piece, then posts it. Live orders go through our Etsy shop. UK delivery is free."
+      lede="Nothing sits in a warehouse. When you order on this site, Printful makes the piece, then posts it. UK and Ireland delivery is free."
     >
       <HouseSection title="How it is made">
         <p>
-          Each piece is printed when you ask for it. Making usually takes a few
+          Each piece is printed when you pay. Making usually takes a few
           working days. Then it is posted from Printful in the United States.
         </p>
       </HouseSection>
 
-      <HouseSection title="UK">
+      <HouseSection title="UK and Ireland">
         <p>
-          Delivery to the UK is free on the Etsy listings. Once it is in the
-          post, allow a week or two. Etsy will send tracking when Printful has
-          the parcel.
+          Delivery is free. Once it is in the post, allow a week or two. We
+          send tracking when Printful has the parcel.
         </p>
       </HouseSection>
 
       <HouseSection title="Returns">
         <p>
-          Etsy listings accept returns and exchanges within thirty days. If
-          the piece arrives damaged or not what you ordered, write through
-          Etsy or to{" "}
+          Made-to-order cloth is not taken back for a change of mind. If the
+          piece arrives damaged or not what you ordered, write to{" "}
           <Link href="/contact" className="text-bone underline underline-offset-4">
             hello@voirnoir.co.uk
-          </Link>
-          .
+          </Link>{" "}
+          within thirty days and we will make it right.
         </p>
       </HouseSection>
 
       <HouseSection title="Buy">
         <p>
-          The shop on this site holds the bag. Checkout lives on{" "}
-          <a
-            href={ETSY_SHOP}
-            className="text-bone underline underline-offset-4"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Etsy
-          </a>{" "}
-          until we wire Printful here.
+          Add to the bag, then pay on this site. Stripe takes the card.
+          Printful cuts and posts the garment. By paying you agree to the{" "}
+          <Link href="/terms" className="text-bone underline underline-offset-4">
+            house terms
+          </Link>
+          .
         </p>
       </HouseSection>
     </HousePage>

@@ -9,12 +9,9 @@ import {
   useState,
 } from "react";
 import { getProduct } from "@/lib/catalog";
+import { MAX_QTY, parseBagItems, type CartItem } from "@/lib/bag";
 
-export type CartItem = {
-  slug: string;
-  size: string;
-  quantity: number;
-};
+export type { CartItem };
 
 type CartContextValue = {
   items: CartItem[];
@@ -34,8 +31,7 @@ function loadItems(): CartItem[] {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    const parsed = JSON.parse(raw) as CartItem[];
-    return Array.isArray(parsed) ? parsed : [];
+    return parseBagItems(JSON.parse(raw) as unknown);
   } catch {
     return [];
   }
@@ -71,15 +67,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const next = match
         ? current.map((item) =>
             item.slug === slug && item.size === size
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity: Math.min(MAX_QTY, item.quantity + 1) }
               : item,
           )
         : [...current, { slug, size, quantity: 1 }];
 
       const product = getProduct(slug);
+      const line = next.find((item) => item.slug === slug && item.size === size);
       const count = next.reduce((sum, item) => sum + item.quantity, 0);
       setAnnouncement(
-        `${product?.name ?? "Garment"}, size ${size}, added to bag. ${count} ${count === 1 ? "item" : "items"} in bag.`,
+        match && line && line.quantity === MAX_QTY && match.quantity >= MAX_QTY
+          ? `Eight is the most of ${product?.name ?? "this garment"} in that size.`
+          : `${product?.name ?? "Garment"}, size ${size}, added to bag. ${count} ${count === 1 ? "item" : "items"} in bag.`,
       );
       return next;
     });
@@ -95,7 +94,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
         return current.map((item) =>
           item.slug === slug && item.size === size
-            ? { ...item, quantity }
+            ? { ...item, quantity: Math.min(MAX_QTY, quantity) }
             : item,
         );
       });

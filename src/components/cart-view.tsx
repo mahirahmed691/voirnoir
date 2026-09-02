@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { CheckoutButton } from "@/components/checkout-button";
 import { CtaLink } from "@/components/brand";
 import { useCart } from "@/components/cart-provider";
-import { ETSY_SHOP, formatPrice, getProduct } from "@/lib/catalog";
+import { formatPrice, getProduct } from "@/lib/catalog";
+import { MAX_QTY } from "@/lib/bag";
 
 export function CartView() {
   const { items, setQuantity, removeItem, ready } = useCart();
@@ -34,8 +36,8 @@ export function CartView() {
     return (
       <div className="max-w-xl">
         <p className="text-lg leading-relaxed text-bone-dim">
-          The bag is empty. Tees, caps, and a tote, made to order and sold on
-          Etsy.
+          The bag is empty. Tees, caps, and a tote, made to order and posted
+          from Printful.
         </p>
         <div className="mt-10">
           <CtaLink href="/shop">Shop the house</CtaLink>
@@ -97,10 +99,11 @@ export function CartView() {
                   </span>
                   <button
                     type="button"
-                    className="grid size-10 place-items-center"
+                    className="grid size-10 place-items-center disabled:opacity-40"
                     onClick={() =>
                       setQuantity(line.slug, line.size, line.quantity + 1)
                     }
+                    disabled={line.quantity >= MAX_QTY}
                     aria-label={`Increase quantity of ${line.product.name}`}
                   >
                     +
@@ -119,8 +122,9 @@ export function CartView() {
         ))}
       </ul>
 
-      <aside className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5">
-        <div className="rounded-[calc(2rem-0.375rem)] bg-ink-soft px-6 py-8 shadow-[inset_0_1px_1px_var(--bezel)]">
+      <aside className="lg:sticky lg:top-28">
+        <div className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5">
+          <div className="rounded-[calc(2rem-0.375rem)] bg-ink-soft px-6 py-8 shadow-[inset_0_1px_1px_var(--bezel)]">
           <p className="text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim">
             Summary
           </p>
@@ -130,15 +134,24 @@ export function CartView() {
               {formatPrice(total)}
             </span>
           </div>
+          <p className="mt-2 text-sm text-bone-dim">Postage, free</p>
           <p className="mt-6 text-sm leading-relaxed text-bone-dim">
-            Live checkout is on Etsy. You can also request the order and we
-            will take it by hand. The bag is written into the message.
+            Pay here. UK and Ireland postage is free. Printful makes the piece
+            and posts it from the United States. By paying you agree to the{" "}
+            <Link href="/terms" className="underline underline-offset-4 hover:text-bone">
+              house terms
+            </Link>
+            .
           </p>
-          <div className="mt-8 flex flex-col items-start gap-3">
-            <CtaLink href={ETSY_SHOP}>Buy on Etsy</CtaLink>
-            <CtaLink href="/contact#order" variant="ghost">
-              Request this order
-            </CtaLink>
+          <p className="mt-4 text-sm leading-relaxed text-bone-dim">
+            <Link href="/sign-in" className="underline underline-offset-4 hover:text-bone">
+              Sign in
+            </Link>{" "}
+            to keep the receipt on this house. Guest pay still works.
+          </p>
+          <div className="mt-8">
+            <CheckoutButton items={items} />
+          </div>
           </div>
         </div>
       </aside>

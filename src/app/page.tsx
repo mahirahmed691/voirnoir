@@ -56,8 +56,8 @@ export default function HomePage() {
               The house
             </h2>
             <p className="max-w-[42ch] text-sm leading-relaxed text-bone-dim md:text-base">
-              Garment-dyed tees, caps, and a tote. Made when you order, sold
-              on Etsy, posted from Printful.
+              Garment-dyed tees, caps, and a tote. Made when you order,
+              posted from Printful.
             </p>
           </div>
         </Reveal>

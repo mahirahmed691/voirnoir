@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { AccountMenuLink, AccountNav } from "@/components/account-nav";
 import { Wordmark } from "@/components/brand";
 import { useCart } from "@/components/cart-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -18,11 +19,23 @@ export function SiteHeader() {
   const { itemCount } = useCart();
   const [open, setOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
+  const [pulse, setPulse] = useState(false);
+  const previousCount = useRef(itemCount);
 
   if (menuPath !== pathname) {
     setMenuPath(pathname);
     setOpen(false);
   }
+
+  useEffect(() => {
+    if (itemCount > previousCount.current) {
+      setPulse(true);
+      const timer = window.setTimeout(() => setPulse(false), 700);
+      previousCount.current = itemCount;
+      return () => window.clearTimeout(timer);
+    }
+    previousCount.current = itemCount;
+  }, [itemCount]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -60,12 +73,18 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-1">
             <ThemeToggle />
+            <AccountNav />
             <Link
               href="/cart"
               className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[0.8rem] uppercase tracking-[0.22em] text-bone transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-bone/5"
             >
               Bag
-              <span aria-hidden="true" className="text-clay">
+              <span
+                aria-hidden="true"
+                className={`inline-block text-clay tabular-nums transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                  pulse ? "scale-125" : "scale-100"
+                }`}
+              >
                 {itemCount}
               </span>
               <span className="sr-only">
@@ -123,6 +142,12 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <AccountMenuLink
+            className={`font-display border-b border-bone/10 py-5 text-5xl leading-none transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
+            style={{ transitionDelay: open ? `${120 + links.length * 80}ms` : "0ms" }}
+          />
           <ThemeToggle variant="menu" />
         </nav>
       </div>

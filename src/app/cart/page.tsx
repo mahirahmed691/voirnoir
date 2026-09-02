@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { CartNotice } from "@/components/cart-notice";
 import { CartView } from "@/components/cart-view";
 
 export const metadata: Metadata = {
@@ -13,6 +15,9 @@ export default function CartPage() {
         <h1 className="font-display text-6xl leading-none tracking-wide md:text-8xl">
           Bag
         </h1>
+        <Suspense>
+          <CartNotice />
+        </Suspense>
         <div className="mt-14">
           <CartView />
         </div>

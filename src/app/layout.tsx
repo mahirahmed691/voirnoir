@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible, Bellefair } from "next/font/google";
 import Script from "next/script";
@@ -9,6 +10,7 @@ import {
   ThemeProvider,
   themeInitScript,
 } from "@/components/theme-provider";
+import { clerkAppearance } from "@/lib/clerk-appearance";
 import "./globals.css";
 
 const bellefair = Bellefair({
@@ -38,12 +40,12 @@ export const metadata: Metadata = {
     template: "%s · Voir Noir",
   },
   description:
-    "See dark. See light. Clothing made for our brother, printed on demand and sold on Etsy.",
+    "See dark. See light. Clothing made for our brother, printed on demand.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Voir Noir",
     description:
-      "See dark. See light. Clothing made for our brother, printed on demand and sold on Etsy.",
+      "See dark. See light. Clothing made for our brother, printed on demand.",
     url: siteUrl,
     siteName: "Voir Noir",
     locale: "en_GB",
@@ -61,20 +63,29 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bellefair.variable} ${atkinson.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ink text-bone">
-        <Script
-          id="voirnoir-theme"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: themeInitScript }}
-        />
-        <ThemeProvider>
-          <CartProvider>
-            <div className="site-grain" aria-hidden="true" />
-            <SkipLink />
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-          </CartProvider>
-        </ThemeProvider>
+        <ClerkProvider
+          appearance={clerkAppearance}
+          afterSignOutUrl="/"
+          signInUrl="/sign-in"
+          signUpUrl="/sign-up"
+          signInFallbackRedirectUrl="/account"
+          signUpFallbackRedirectUrl="/account"
+        >
+          <Script
+            id="voirnoir-theme"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: themeInitScript }}
+          />
+          <ThemeProvider>
+            <CartProvider>
+              <div className="site-grain" aria-hidden="true" />
+              <SkipLink />
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+            </CartProvider>
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

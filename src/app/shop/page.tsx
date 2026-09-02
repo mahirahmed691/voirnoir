@@ -5,7 +5,7 @@ import { products } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Voir Noir on Etsy. Garment-dyed tees, caps, and a tote, made to order.",
+  description: "Voir Noir. Garment-dyed tees, caps, and a tote, made to order.",
 };
 
 export default function ShopPage() {
@@ -19,8 +19,8 @@ export default function ShopPage() {
             Shop
           </h1>
           <p className="max-w-[40ch] text-sm leading-relaxed text-bone-dim">
-            {products.length} pieces from the Etsy shop. Garment-dyed, made to
-            order, then posted.
+            {products.length} pieces. Pay on this site. Made to order, then
+            posted.
           </p>
         </div>
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { BrailleV } from "@/components/brand";
 import { Motto } from "@/components/motto";
-import { ETSY_SHOP } from "@/lib/catalog";
 
 export function SiteFooter() {
   return (
@@ -14,7 +13,7 @@ export function SiteFooter() {
           </div>
           <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-bone-dim">
             <Motto /> Clothing made for our brother, printed one piece at a
-            time through Printful and sold on Etsy.
+            time through Printful.
           </p>
         </div>
 
@@ -29,16 +28,6 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <a
-                href={ETSY_SHOP}
-                className="hover:text-clay"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Etsy
-              </a>
-            </li>
-            <li>
               <Link href="/story" className="hover:text-clay">
                 Story
               </Link>
@@ -46,6 +35,11 @@ export function SiteFooter() {
             <li>
               <Link href="/cart" className="hover:text-clay">
                 Bag
+              </Link>
+            </li>
+            <li>
+              <Link href="/account" className="hover:text-clay">
+                Account
               </Link>
             </li>
             <li>
@@ -74,6 +68,11 @@ export function SiteFooter() {
             <li>
               <Link href="/privacy" className="hover:text-clay">
                 Privacy
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="hover:text-clay">
+                Terms
               </Link>
             </li>
             <li>

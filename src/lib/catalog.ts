@@ -18,6 +18,7 @@ export type Product = {
   color: { name: string; hex: string };
   etsyUrl: string;
   printfulProductId: string | null;
+  printfulVariants?: Partial<Record<string, number>>;
 };
 
 export const ETSY_SHOP = "https://www.etsy.com/uk/shop/VNVOIRNOIR";

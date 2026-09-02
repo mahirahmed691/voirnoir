@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AddToCart } from "@/components/add-to-cart";
 import { CtaLink } from "@/components/brand";
 import { ProductGallery } from "@/components/product-gallery";
+import { ProductJsonLd } from "@/components/product-json-ld";
 import { formatPrice, getProduct, products } from "@/lib/catalog";
 
 type Props = PageProps<"/shop/[slug]">;
@@ -35,6 +36,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <main id="content" className="px-6 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
+      <ProductJsonLd product={product} />
       <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <ProductGallery images={product.images} />
@@ -50,6 +52,10 @@ export default async function ProductPage({ params }: Props) {
           <p className="mt-5 text-xl text-bone-dim">{product.tagline}</p>
           <p className="mt-6 font-display text-4xl">
             {formatPrice(product.pricePence, product.priceFrom)}
+          </p>
+          <p className="mt-3 text-sm text-bone-dim">
+            Made to order. Free UK and Ireland postage. Eight to twenty-one
+            working days.
           </p>
           <p className="mt-8 max-w-[48ch] text-base leading-relaxed text-bone-dim">
             {product.description}
@@ -93,6 +99,10 @@ export default async function ProductPage({ params }: Props) {
               className="underline underline-offset-4 hover:text-bone"
             >
               Shipping
+            </Link>
+            <span aria-hidden="true"> · </span>
+            <Link href="/terms" className="underline underline-offset-4 hover:text-bone">
+              Terms
             </Link>
           </p>
         </div>

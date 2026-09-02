@@ -55,9 +55,8 @@ export default function StoryPage() {
             <Reveal delay={140}>
               <p>
                 We print with Printful, one piece at a time. Nothing waits in
-                a warehouse. The live shop is on Etsy: garment-dyed tees,
-                caps, a tote. More will come as we learn what this house
-                needs.
+                a warehouse. The shop is here: garment-dyed tees, caps, a
+                tote. More will come as we learn what this house needs.
               </p>
             </Reveal>
             <Reveal delay={200}>

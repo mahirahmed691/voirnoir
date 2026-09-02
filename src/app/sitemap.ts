@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site}/size`, lastModified: now },
     { url: `${site}/shipping`, lastModified: now },
     { url: `${site}/privacy`, lastModified: now },
+    { url: `${site}/terms`, lastModified: now },
     ...products.map((product) => ({
       url: `${site}/shop/${product.slug}`,
       lastModified: now,

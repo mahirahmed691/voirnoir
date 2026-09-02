@@ -33,7 +33,7 @@ export function ContactForm() {
     (sum, line) => sum + line.product.pricePence * line.quantity,
     0,
   );
-  const hasOrder = lines.length > 0;
+  const hasBag = lines.length > 0;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,12 +42,12 @@ export function ContactForm() {
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
 
-    const orderBlock = hasOrder
+    const bagBlock = hasBag
       ? [
-          "Order",
+          "Bag on the site",
           ...lines.map(
             (line) =>
-              `- ${line.product.name}, size ${line.size} × ${line.quantity} — ${formatPrice(line.product.pricePence * line.quantity)}`,
+              `- ${line.product.name}, size ${line.size} × ${line.quantity} (${formatPrice(line.product.pricePence * line.quantity)})`,
           ),
           `Total: ${formatPrice(total)}`,
           "",
@@ -55,12 +55,10 @@ export function ContactForm() {
       : "";
 
     const subject = encodeURIComponent(
-      hasOrder
-        ? `Voir Noir order, from ${name || "the site"}`
-        : `Voir Noir, from ${name || "the site"}`,
+      `Voir Noir, from ${name || "the site"}`,
     );
     const body = encodeURIComponent(
-      `${orderBlock}${message}\n\n— ${name}${email ? `\n${email}` : ""}`,
+      `${bagBlock}${message}\n\n- ${name}${email ? `\n${email}` : ""}`,
     );
 
     window.location.assign(
@@ -80,9 +78,7 @@ export function ContactForm() {
   if (sent) {
     return (
       <p className="max-w-md text-lg leading-relaxed text-bone-dim" role="status">
-        Your mail app should be open
-        {hasOrder ? ", with the bag written into the message" : ""}. If nothing
-        appeared, write to{" "}
+        Your mail app should be open. If nothing appeared, write to{" "}
         <a href={`mailto:${contactEmail}`} className="text-bone underline">
           {contactEmail}
         </a>
@@ -93,7 +89,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-lg space-y-6">
-      {hasOrder ? (
+      {hasBag ? (
         <div
           id="order"
           className="rounded-[1.75rem] border border-bone/10 bg-bone/5 p-1.5"
@@ -123,11 +119,11 @@ export function ContactForm() {
               <span className="tabular-nums">{formatPrice(total)}</span>
             </p>
             <p className="mt-3 text-xs text-bone-dim">
-              This is written into the email.{" "}
+              Pay from the{" "}
               <Link href="/cart" className="underline underline-offset-4">
-                Edit the bag
+                bag
               </Link>
-              .
+              . This is written into the email so we know which pieces you mean.
             </p>
           </div>
         </div>
@@ -161,16 +157,14 @@ export function ContactForm() {
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="message" className="text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim">
-          {hasOrder ? "Note" : "Message"}
+          Message
         </label>
         <textarea
           id="message"
           name="message"
           required
           rows={6}
-          placeholder={
-            hasOrder ? "Size notes, address, anything we should know." : undefined
-          }
+          placeholder="Sizes, a paid order, the story, a greeting."
           className="rounded-2xl border border-bone/15 bg-ink-soft px-4 py-3 text-bone outline-none placeholder:text-bone-dim/70"
         />
       </div>
@@ -178,7 +172,7 @@ export function ContactForm() {
         type="submit"
         className="group inline-flex items-center gap-3 rounded-full bg-bone py-2 pl-5 pr-2 text-sm text-ink transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
       >
-        <span>{hasOrder ? "Request this order" : "Open email"}</span>
+        <span>Open email</span>
         <span
           className="grid size-8 place-items-center rounded-full bg-ink/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px"
           aria-hidden="true"
