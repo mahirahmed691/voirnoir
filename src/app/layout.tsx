@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Voir Noir",
     locale: "en_GB",
     type: "website",
-    images: [{ url: "/images/etsy/tee-garment-dyed.jpg" }],
+    images: [{ url: "/images/studio/hero.jpg" }],
   },
 };
 

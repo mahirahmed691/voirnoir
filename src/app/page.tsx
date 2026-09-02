@@ -12,8 +12,8 @@ export default function HomePage() {
     <main id="content">
       <section className="relative min-h-[100dvh]">
         <Image
-          src="/images/etsy/tee-garment-dyed.jpg"
-          alt="Black garment-dyed Voir Noir t-shirt on dark stone, one crease catching light"
+          src="/images/studio/hero.jpg"
+          alt="Heavy black cotton, one crease catching a thin warm light"
           fill
           priority
           sizes="100vw"

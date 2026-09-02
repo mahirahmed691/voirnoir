@@ -33,14 +33,18 @@ export const products: Product[] = [
     pricePence: 2399,
     priceFrom: true,
     description:
-      "The unisex garment-dyed heavyweight t-shirt. One hundred percent ring-spun cotton, 6.1 oz, relaxed fit. A small tonal mark sits on the left chest. This is the luxury cloth from the Etsy shop — dyed as a whole garment so the black sits in the fibre, not only on the surface.",
+      "The unisex garment-dyed heavyweight t-shirt. One hundred percent ring-spun cotton, 6.1 oz, relaxed fit. A small tonal mark sits on the left chest. Dyed as a whole garment so the black sits in the fibre, not only on the surface.",
     feel: "The jersey is thick and dry to the hand. The collar is double-needled and stands. Shoulders are twill-taped. You find the mark by a slight ridge on the left chest.",
     care: "Wash cold, inside out. Hang to dry. Garment dye will hold if you keep it out of a hot drum.",
     fabric: "100% ring-spun cotton, 206.8 g/m², garment-dyed. Made to order.",
     images: [
       {
-        src: "/images/etsy/tee-garment-dyed.jpg",
-        alt: "Black garment-dyed Voir Noir t-shirt with a subtle tonal chest mark, laid on dark stone",
+        src: "/images/studio/tee-garment.jpg",
+        alt: "Black garment-dyed t-shirt draped on dark limestone, one crease catching a warm light",
+      },
+      {
+        src: "/images/studio/tee-garment-2.jpg",
+        alt: "Collar and left chest of the garment-dyed tee, the tonal mark catching light",
       },
     ],
     sizes: [...TEE_SIZES],
@@ -60,8 +64,8 @@ export const products: Product[] = [
     fabric: "100% combed ring-spun cotton, 237 g/m². Made to order.",
     images: [
       {
-        src: "/images/etsy/tee-boxy.jpg",
-        alt: "Black oversized Voir Noir boxy t-shirt with drop shoulders, hanging against a dark wall",
+        src: "/images/studio/tee-boxy.jpg",
+        alt: "Oversized black boxy t-shirt with drop shoulders, crumpled on black linen at night",
       },
     ],
     sizes: [...STANDARD_SIZES],
@@ -81,12 +85,8 @@ export const products: Product[] = [
     fabric: "100% cotton jersey on solid colours. Made to order.",
     images: [
       {
-        src: "/images/etsy/tee-crewneck-1.jpg",
-        alt: "Black heavyweight Voir Noir crewneck t-shirt, front view",
-      },
-      {
-        src: "/images/etsy/tee-crewneck-2.jpg",
-        alt: "Black heavyweight Voir Noir crewneck t-shirt, back view",
+        src: "/images/studio/tee-crew.jpg",
+        alt: "Black heavyweight crewneck t-shirt folded on dark walnut, one sleeve falling",
       },
     ],
     sizes: [...STANDARD_SIZES],
@@ -107,12 +107,12 @@ export const products: Product[] = [
     fabric: "100% cotton, 100–170 g/m². Made to order.",
     images: [
       {
-        src: "/images/etsy/tote-1.jpg",
-        alt: "Natural cotton Voir Noir tote bag, front print",
+        src: "/images/studio/tote.jpg",
+        alt: "Natural cotton tote standing on dark limestone, black house mark, long handles falling",
       },
       {
-        src: "/images/etsy/tote-2.jpg",
-        alt: "Natural cotton Voir Noir tote bag, reverse print",
+        src: "/images/studio/tote-2.jpg",
+        alt: "Side of the cotton tote on dark stone, handles and reinforced stitching",
       },
     ],
     sizes: ["One size"],
@@ -132,12 +132,8 @@ export const products: Product[] = [
     fabric: "100% cotton twill. One size, about 58 cm. Made to order.",
     images: [
       {
-        src: "/images/etsy/cap-low-1.jpg",
-        alt: "Black Voir Noir low-profile baseball cap, front",
-      },
-      {
-        src: "/images/etsy/cap-low-2.jpg",
-        alt: "Black Voir Noir low-profile baseball cap, three-quarter view",
+        src: "/images/studio/cap-low.jpg",
+        alt: "Black low-profile cotton cap on dark limestone, visor catching a warm light",
       },
     ],
     sizes: ["One size"],
@@ -158,16 +154,12 @@ export const products: Product[] = [
     fabric: "26% cotton, 74% polyester. Fits about 55–60 cm. Made to order.",
     images: [
       {
-        src: "/images/etsy/cap-premium-1.jpg",
-        alt: "Black Voir Noir premium mesh-back cap, front",
-      },
-      {
-        src: "/images/etsy/cap-premium-2.jpg",
-        alt: "Black Voir Noir premium mesh-back cap, side",
+        src: "/images/studio/cap-premium.jpg",
+        alt: "Bone mesh-back cap on dark walnut, black house mark on the front",
       },
     ],
     sizes: ["One size"],
-    color: { name: "Ink", hex: "#1c1814" },
+    color: { name: "Bone", hex: "#e8dfd2" },
     etsyUrl: "https://www.etsy.com/uk/listing/4521839069/voir-noir-premium-cap",
     printfulProductId: null,
   },
@@ -183,12 +175,8 @@ export const products: Product[] = [
     fabric: "100% chino cotton twill. Made to order.",
     images: [
       {
-        src: "/images/etsy/cap-dad-1.jpg",
-        alt: "Black Voir Noir dad hat with antique buckle, front",
-      },
-      {
-        src: "/images/etsy/cap-dad-2.jpg",
-        alt: "Black Voir Noir dad hat, side view",
+        src: "/images/studio/cap-dad.jpg",
+        alt: "Black dad hat on dark linen, antique buckle catching a clay-gold light",
       },
     ],
     sizes: ["One size"],
@@ -208,12 +196,8 @@ export const products: Product[] = [
     fabric: "35% chino cotton twill, 65% polyester. Made to order.",
     images: [
       {
-        src: "/images/etsy/cap-camo-1.jpg",
-        alt: "Green camo Voir Noir dad hat, front",
-      },
-      {
-        src: "/images/etsy/cap-camo-2.jpg",
-        alt: "Green camo Voir Noir dad hat, side",
+        src: "/images/studio/cap-camo.jpg",
+        alt: "Green camo dad hat on dark walnut, antique buckle in warm light",
       },
     ],
     sizes: ["One size"],
