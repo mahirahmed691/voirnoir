@@ -7,7 +7,7 @@ import { saveAccount } from "@/app/account/actions";
 import { GENDERS, type HouseProfile } from "@/lib/house";
 
 const fieldClass =
-  "min-h-12 rounded-2xl border border-bone/15 bg-ink-soft px-4 text-bone outline-none";
+  "min-h-12 rounded-2xl border border-bone/15 bg-ink px-4 text-bone outline-none transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]";
 const labelClass = "text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim";
 
 function KeepButton() {
@@ -41,7 +41,7 @@ export function AccountForm({
   const [gender, setGender] = useState(profile.gender);
 
   return (
-    <form action={saveAccount} className="max-w-lg space-y-6">
+    <form action={saveAccount} className="space-y-6">
       {kept ? (
         <p className="text-sm text-clay" role="status">
           Kept.

@@ -16,10 +16,9 @@ export const clerkAppearance = {
     fontFamilyButtons: "var(--font-atkinson), ui-sans-serif, system-ui, sans-serif",
   },
   elements: {
-    cardBox: "shadow-none",
+    rootBox: "w-full",
+    cardBox: "w-full shadow-none",
     card: "border border-bone/10 bg-ink-soft shadow-none",
-    headerTitle: "font-display tracking-wide",
-    headerSubtitle: "text-bone-dim",
     formButtonPrimary:
       "rounded-full bg-bone text-ink shadow-none hover:bg-bone/90",
     socialButtonsBlockButton:
@@ -30,3 +29,14 @@ export const clerkAppearance = {
     userButtonAvatarBox: "size-8",
   },
 };
+
+export const clerkAuthAppearance = {
+  ...clerkAppearance,
+  elements: {
+    ...clerkAppearance.elements,
+    header: "hidden",
+    headerTitle: "hidden",
+    headerSubtitle: "hidden",
+  },
+};
+

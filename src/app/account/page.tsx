@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { AccountForm } from "@/components/account-form";
-import { HousePage, HouseSection } from "@/components/house-page";
+import { AccountPanel, AccountStage } from "@/components/account-stage";
+import { CtaLink } from "@/components/brand";
 import { formatPrice } from "@/lib/catalog";
 import { claimOrders, getOrdersForUser, getProfile, type HouseProfile } from "@/lib/house";
 
@@ -58,35 +59,61 @@ export default async function AccountPage({ searchParams }: Props) {
   const orders = await getOrdersForUser(userId, email);
 
   return (
-    <HousePage
+    <AccountStage
       eyebrow="House"
       title="Your house."
       lede="Keep an address, a birthday if you want, and every receipt from this shop. Paying as a guest still works."
+      image={{
+        src: "/images/story-room.png",
+        alt: "A dark bedroom at night, black clothing over a wooden chair, a thin strip of streetlight under the door",
+        caption: "The book",
+      }}
     >
-      <HouseSection title="You">
-        <AccountForm
-          profile={{ ...profile, givenName: profile.givenName || user?.firstName || "", familyName: profile.familyName || user?.lastName || "" }}
-          email={email}
-          kept={params.kept === "1"}
-        />
-      </HouseSection>
+      <AccountPanel>
+        <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
+          You
+        </p>
+        <h2 className="font-display mt-3 text-3xl tracking-wide text-bone">
+          Details
+        </h2>
+        <div className="mt-8">
+          <AccountForm
+            profile={{
+              ...profile,
+              givenName: profile.givenName || user?.firstName || "",
+              familyName: profile.familyName || user?.lastName || "",
+            }}
+            email={email}
+            kept={params.kept === "1"}
+          />
+        </div>
+      </AccountPanel>
 
-      <HouseSection title="Orders">
+      <section id="orders" className="mt-10">
+        <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
+          Paid
+        </p>
+        <h2 className="font-display mt-3 text-3xl tracking-wide text-bone">
+          Orders
+        </h2>
+
         {orders.length === 0 ? (
-          <p>
-            Nothing paid on this house yet. Pay from the{" "}
-            <Link href="/cart" className="text-bone underline underline-offset-4">
-              bag
-            </Link>
-            , and the receipt will sit here.
-          </p>
+          <AccountPanel className="mt-6">
+            <p className="max-w-[36ch] text-base leading-relaxed text-bone-dim">
+              Nothing paid on this house yet. Pay from the bag, and the receipt
+              will sit here.
+            </p>
+            <div className="mt-8">
+              <CtaLink href="/cart">Open the bag</CtaLink>
+            </div>
+          </AccountPanel>
         ) : (
-          <ul className="space-y-4">
+          <ul className="mt-6 space-y-3">
             {orders.map((order) => (
               <li key={order.stripeSessionId}>
                 <Link
                   href={`/account/orders/${order.stripeSessionId}`}
-                  className="block rounded-[1.5rem] border border-bone/10 bg-bone/5 p-1.5 transition-colors hover:bg-bone/10"
+                  className="block rounded-[1.5rem] border border-bone/10 bg-bone/5 p-1.5 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-bone/10"
                 >
                   <div className="rounded-[calc(1.5rem-0.375rem)] bg-ink-soft px-5 py-4">
                     <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
@@ -108,7 +135,7 @@ export default async function AccountPage({ searchParams }: Props) {
             ))}
           </ul>
         )}
-      </HouseSection>
-    </HousePage>
+      </section>
+    </AccountStage>
   );
 }

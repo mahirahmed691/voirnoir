@@ -18,7 +18,7 @@ export default function StoryPage() {
           Voir noir
         </p>
         <h1 className="font-display mt-5 max-w-[12ch] text-[clamp(3.5rem,10vw,7.5rem)] leading-[0.9] tracking-wide">
-          <Motto />
+          <Motto mark />
         </h1>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12">

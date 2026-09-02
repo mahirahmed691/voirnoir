@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SignUp } from "@clerk/nextjs";
-import { clerkAppearance } from "@/lib/clerk-appearance";
+import { AccountStage } from "@/components/account-stage";
+import { clerkAuthAppearance } from "@/lib/clerk-appearance";
 import { isClerkConfigured } from "@/lib/clerk";
 
 export const metadata: Metadata = {
@@ -11,26 +12,24 @@ export const metadata: Metadata = {
 
 export default function SignUpPage() {
   return (
-    <main id="content" className="px-6 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
-      <article className="mx-auto max-w-[1400px]">
-        <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
-          House
-        </p>
-        <h1 className="font-display mt-5 max-w-[14ch] text-[clamp(3.5rem,10vw,7.5rem)] leading-[0.9] tracking-wide">
-          Keep a key.
-        </h1>
-        <p className="mt-8 max-w-[42ch] text-lg leading-relaxed text-bone-dim">
-          Optional. Guest checkout stays. If you join, orders and receipts sit
-          here, and you can leave an address for next time.
-        </p>
-        <div className="mt-16">
-          {isClerkConfigured() ? (
-            <SignUp forceRedirectUrl="/account" appearance={clerkAppearance} />
-          ) : (
-            <p className="text-lg text-bone-dim">The house book is not open yet.</p>
-          )}
+    <AccountStage
+      align="center"
+      eyebrow="House"
+      title="Keep a key."
+      lede="Optional. Guest checkout stays. If you join, orders and receipts sit here, and you can leave an address for next time."
+      image={{
+        src: "/images/story-room.png",
+        alt: "A dark bedroom at night, black clothing over a wooden chair, a thin strip of streetlight under the door",
+        caption: "The key",
+      }}
+    >
+      {isClerkConfigured() ? (
+        <div className="flex justify-center lg:justify-start">
+          <SignUp forceRedirectUrl="/account" appearance={clerkAuthAppearance} />
         </div>
-      </article>
-    </main>
+      ) : (
+        <p className="text-lg text-bone-dim">The house book is not open yet.</p>
+      )}
+    </AccountStage>
   );
 }
