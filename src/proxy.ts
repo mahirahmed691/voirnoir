@@ -1,16 +1,33 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import type { NextFetchEvent, NextRequest } from "next/server";
 
-const runClerk = clerkMiddleware({
-  signInUrl: "/sign-in",
-  signUpUrl: "/sign-up",
-});
+let runClerk: ReturnType<typeof clerkMiddleware> | null | undefined;
+
+function getClerk() {
+  if (runClerk !== undefined) return runClerk;
+  if (
+    !process.env.CLERK_SECRET_KEY ||
+    !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  ) {
+    runClerk = null;
+    return null;
+  }
+  runClerk = clerkMiddleware({
+    signInUrl: "/sign-in",
+    signUpUrl: "/sign-up",
+  });
+  return runClerk;
+}
 
 export default async function proxy(
-  request: Parameters<typeof runClerk>[0],
-  event: Parameters<typeof runClerk>[1],
+  request: NextRequest,
+  event: NextFetchEvent,
 ) {
-  const response = await runClerk(request, event);
+  const clerk = getClerk();
+  if (!clerk) return NextResponse.next();
+
+  const response = await clerk(request, event);
   if (!response) return NextResponse.next();
   const rewrite = response.headers.get("x-middleware-rewrite");
   if (!rewrite) return response;
@@ -24,7 +41,10 @@ export default async function proxy(
 
   const next = NextResponse.next({ request });
   response.headers.forEach((value, key) => {
-    if (key === "x-middleware-rewrite" || key === "x-middleware-override-headers") {
+    if (
+      key === "x-middleware-rewrite" ||
+      key === "x-middleware-override-headers"
+    ) {
       return;
     }
     next.headers.append(key, value);

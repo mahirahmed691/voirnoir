@@ -35,7 +35,13 @@ export async function POST(request: Request) {
   const origin = checkoutOrigin(request);
   const assets = publicAssetOrigin();
   const bag = serializeBag(lines);
-  const { userId } = await auth();
+  let userId: string | null = null;
+  try {
+    const authState = await auth();
+    userId = authState.userId;
+  } catch {
+    userId = null;
+  }
   const user = userId ? await currentUser() : null;
   const email =
     user?.primaryEmailAddress?.emailAddress ??

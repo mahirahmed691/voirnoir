@@ -18,7 +18,13 @@ export default async function OrderSuccessPage({ searchParams }: Props) {
   const params = await searchParams;
   const sessionId =
     typeof params.session_id === "string" ? params.session_id : undefined;
-  const { userId } = await auth();
+  let userId: string | null = null;
+  try {
+    const authState = await auth();
+    userId = authState.userId;
+  } catch {
+    userId = null;
+  }
   const session = await getPaidCheckoutSession(sessionId);
   if (session) {
     try {

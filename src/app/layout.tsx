@@ -1,16 +1,6 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible, Bellefair } from "next/font/google";
-import Script from "next/script";
-import { SkipLink } from "@/components/brand";
-import { CartProvider } from "@/components/cart-provider";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import {
-  ThemeProvider,
-  themeInitScript,
-} from "@/components/theme-provider";
-import { clerkAppearance } from "@/lib/clerk-appearance";
+import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 
 const bellefair = Bellefair({
@@ -63,29 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bellefair.variable} ${atkinson.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ink text-bone">
-        <ClerkProvider
-          appearance={clerkAppearance}
-          afterSignOutUrl="/"
-          signInUrl="/sign-in"
-          signUpUrl="/sign-up"
-          signInFallbackRedirectUrl="/account"
-          signUpFallbackRedirectUrl="/account"
-        >
-          <Script
-            id="voirnoir-theme"
-            strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{ __html: themeInitScript }}
-          />
-          <ThemeProvider>
-            <CartProvider>
-              <div className="site-grain" aria-hidden="true" />
-              <SkipLink />
-              <SiteHeader />
-              {children}
-              <SiteFooter />
-            </CartProvider>
-          </ThemeProvider>
-        </ClerkProvider>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

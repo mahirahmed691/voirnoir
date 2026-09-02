@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SignUp } from "@clerk/nextjs";
 import { clerkAppearance } from "@/lib/clerk-appearance";
+import { isClerkConfigured } from "@/lib/clerk";
 
 export const metadata: Metadata = {
   title: "Join",
@@ -23,7 +24,11 @@ export default function SignUpPage() {
           here, and you can leave an address for next time.
         </p>
         <div className="mt-16">
-          <SignUp forceRedirectUrl="/account" appearance={clerkAppearance} />
+          {isClerkConfigured() ? (
+            <SignUp forceRedirectUrl="/account" appearance={clerkAppearance} />
+          ) : (
+            <p className="text-lg text-bone-dim">The house book is not open yet.</p>
+          )}
         </div>
       </article>
     </main>
