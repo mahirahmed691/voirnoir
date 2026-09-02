@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CtaLink } from "@/components/brand";
+import { Motto } from "@/components/motto";
 import { ProductCard } from "@/components/product-card";
 import { Reveal } from "@/components/reveal";
 import { products } from "@/lib/catalog";
@@ -11,8 +12,8 @@ export default function HomePage() {
     <main id="content">
       <section className="relative min-h-[100dvh]">
         <Image
-          src="/images/hero-fabric.png"
-          alt="Heavy black cotton, one crease catching a thin warm light"
+          src="/images/etsy/tee-garment-dyed.jpg"
+          alt="Black garment-dyed Voir Noir t-shirt on dark stone, one crease catching light"
           fill
           priority
           sizes="100vw"
@@ -29,14 +30,18 @@ export default function HomePage() {
             Made for our brother
           </p>
           <h1 className="font-display mt-4 max-w-[8ch] text-[clamp(4.5rem,16vw,10.5rem)] leading-[0.82] tracking-wide">
-            See dark.
+            <Motto />
           </h1>
-          <p className="mt-6 max-w-[36ch] text-base leading-relaxed text-bone/85 md:text-lg">
+          <p className="only-dark mt-6 max-w-[36ch] text-base leading-relaxed text-bone/85 md:text-lg">
             Voir Noir is French for see dark. Clothing from the night after
             sight changed, printed one piece at a time.
           </p>
+          <p className="only-light mt-6 max-w-[36ch] text-base leading-relaxed text-bone/85 md:text-lg">
+            Voir Noir is French for see dark. In the day the house says see
+            light. Clothing printed one piece at a time.
+          </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <CtaLink href="/shop">Shop the first drop</CtaLink>
+            <CtaLink href="/shop">Shop the house</CtaLink>
             <CtaLink href="/story" variant="ghost">
               Read the story
             </CtaLink>
@@ -48,11 +53,11 @@ export default function HomePage() {
         <Reveal>
           <div className="mx-auto flex max-w-[1400px] flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2 className="font-display max-w-[10ch] text-5xl leading-none tracking-wide md:text-7xl">
-              First drop
+              The house
             </h2>
             <p className="max-w-[42ch] text-sm leading-relaxed text-bone-dim md:text-base">
-              Four black garments. Heavy cloth, no chest print, made when you
-              order so nothing sits in a warehouse.
+              Garment-dyed tees, caps, and a tote. Made when you order, sold
+              on Etsy, posted from Printful.
             </p>
           </div>
         </Reveal>
@@ -72,11 +77,19 @@ export default function HomePage() {
           </div>
         </div>
 
-        {rest[2] ? (
-          <Reveal className="mx-auto mt-10 max-w-[1400px] md:max-w-[28rem]" delay={200}>
-            <ProductCard product={rest[2]} />
-          </Reveal>
+        {rest.slice(2).length > 0 ? (
+          <div className="mx-auto mt-10 grid max-w-[1400px] gap-10 sm:grid-cols-2 md:grid-cols-3">
+            {rest.slice(2).map((product, index) => (
+              <Reveal key={product.slug} delay={200 + index * 60}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </div>
         ) : null}
+
+        <Reveal className="mx-auto mt-14 max-w-[1400px]" delay={280}>
+          <CtaLink href="/shop">All pieces</CtaLink>
+        </Reveal>
       </section>
 
       <section className="px-6 pb-24 md:px-10 md:pb-36">
@@ -85,7 +98,7 @@ export default function HomePage() {
             <div className="relative min-h-[22rem] overflow-hidden rounded-[calc(2rem-0.375rem)] md:min-h-[36rem] md:rounded-[calc(2.5rem-0.375rem)] md:rounded-r-none">
               <Image
                 src="/images/story-room.png"
-                alt="A dark bedroom at night, a black hoodie over a wooden chair, a strip of streetlight under the door"
+                alt="A dark bedroom at night, black clothing over a wooden chair, a strip of streetlight under the door"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"

@@ -49,7 +49,7 @@ export default async function ProductPage({ params }: Props) {
           </h1>
           <p className="mt-5 text-xl text-bone-dim">{product.tagline}</p>
           <p className="mt-6 font-display text-4xl">
-            {formatPrice(product.pricePence)}
+            {formatPrice(product.pricePence, product.priceFrom)}
           </p>
           <p className="mt-8 max-w-[48ch] text-base leading-relaxed text-bone-dim">
             {product.description}
@@ -100,7 +100,7 @@ export default async function ProductPage({ params }: Props) {
 
       {others.length > 0 ? (
         <aside className="mx-auto mt-28 max-w-[1400px]">
-          <h2 className="font-display text-3xl tracking-wide">Also in the drop</h2>
+          <h2 className="font-display text-3xl tracking-wide">Also in the house</h2>
           <div className="mt-8 flex flex-wrap gap-3">
             {others.map((item) => (
               <CtaLink key={item.slug} href={`/shop/${item.slug}`} variant="ghost">

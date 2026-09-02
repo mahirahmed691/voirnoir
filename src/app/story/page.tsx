@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaLink } from "@/components/brand";
+import { Motto } from "@/components/motto";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function StoryPage() {
           Voir noir
         </p>
         <h1 className="font-display mt-5 max-w-[12ch] text-[clamp(3.5rem,10vw,7.5rem)] leading-[0.9] tracking-wide">
-          See dark.
+          <Motto />
         </h1>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12">
@@ -53,10 +54,10 @@ export default function StoryPage() {
             </Reveal>
             <Reveal delay={140}>
               <p>
-                We print with Printful, one garment at a time. Nothing waits
-                in a warehouse. When you order, a piece is made and sent. The
-                first drop is four black garments. More will come as we learn
-                what this house needs.
+                We print with Printful, one piece at a time. Nothing waits in
+                a warehouse. The live shop is on Etsy: garment-dyed tees,
+                caps, a tote. More will come as we learn what this house
+                needs.
               </p>
             </Reveal>
             <Reveal delay={200}>
@@ -66,9 +67,15 @@ export default function StoryPage() {
                 the eye first.
               </p>
             </Reveal>
-            <Reveal delay={260}>
+            <Reveal delay={240}>
+              <p>
+                The house has two hours. At night it says see dark. In the
+                day it says see light. The name is still Voir Noir.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
               <div className="pt-4">
-                <CtaLink href="/shop">Shop the first drop</CtaLink>
+                <CtaLink href="/shop">Shop the house</CtaLink>
               </div>
             </Reveal>
           </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaLink } from "@/components/brand";
 import { useCart } from "@/components/cart-provider";
-import { formatPrice, getProduct } from "@/lib/catalog";
+import { ETSY_SHOP, formatPrice, getProduct } from "@/lib/catalog";
 
 export function CartView() {
   const { items, setQuantity, removeItem, ready } = useCart();
@@ -34,11 +34,11 @@ export function CartView() {
     return (
       <div className="max-w-xl">
         <p className="text-lg leading-relaxed text-bone-dim">
-          The bag is empty. The first drop is four black garments, made to
-          order.
+          The bag is empty. Tees, caps, and a tote, made to order and sold on
+          Etsy.
         </p>
         <div className="mt-10">
-          <CtaLink href="/shop">Shop the drop</CtaLink>
+          <CtaLink href="/shop">Shop the house</CtaLink>
         </div>
       </div>
     );
@@ -120,7 +120,7 @@ export function CartView() {
       </ul>
 
       <aside className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5">
-        <div className="rounded-[calc(2rem-0.375rem)] bg-ink-soft px-6 py-8 shadow-[inset_0_1px_1px_rgba(232,217,196,0.08)]">
+        <div className="rounded-[calc(2rem-0.375rem)] bg-ink-soft px-6 py-8 shadow-[inset_0_1px_1px_var(--bezel)]">
           <p className="text-[0.7rem] uppercase tracking-[0.22em] text-bone-dim">
             Summary
           </p>
@@ -131,11 +131,14 @@ export function CartView() {
             </span>
           </div>
           <p className="mt-6 text-sm leading-relaxed text-bone-dim">
-            Printful checkout is coming. Until then, request the order and we
+            Live checkout is on Etsy. You can also request the order and we
             will take it by hand. The bag is written into the message.
           </p>
-          <div className="mt-8">
-            <CtaLink href="/contact#order">Request this order</CtaLink>
+          <div className="mt-8 flex flex-col items-start gap-3">
+            <CtaLink href={ETSY_SHOP}>Buy on Etsy</CtaLink>
+            <CtaLink href="/contact#order" variant="ghost">
+              Request this order
+            </CtaLink>
           </div>
         </div>
       </aside>

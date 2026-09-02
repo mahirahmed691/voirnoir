@@ -1,8 +1,9 @@
 /**
  * Voir Noir fulfils through Printful.
  *
- * The shop currently reads from `src/lib/catalog.ts` so the site can live
- * before API keys exist. When you are ready:
+ * The shop currently reads from `src/lib/catalog.ts` (Etsy listings) so the
+ * site can live before API keys exist. Checkout is on Etsy. When you are
+ * ready to fulfil from this site:
  *
  * 1. Create a Printful store and copy the API token + store ID
  * 2. Put them in `.env.local` (see `.env.example`)

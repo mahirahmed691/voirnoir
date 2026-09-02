@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Wordmark } from "@/components/brand";
 import { useCart } from "@/components/cart-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { href: "/shop", label: "Shop" },
@@ -33,7 +34,7 @@ export function SiteHeader() {
   return (
     <>
       <header className="pointer-events-none fixed inset-x-0 top-0 z-40 flex justify-center px-4 pt-5 md:pt-6">
-        <div className="pointer-events-auto flex w-full max-w-[1100px] items-center justify-between gap-4 rounded-full border border-bone/10 bg-ink/75 px-4 py-2 shadow-[inset_0_1px_0_rgba(232,217,196,0.08)] backdrop-blur-xl md:px-5">
+        <div className="pointer-events-auto flex w-full max-w-[1100px] items-center justify-between gap-4 rounded-full border border-bone/10 bg-ink/75 px-4 py-2 shadow-[inset_0_1px_0_var(--bezel)] backdrop-blur-xl transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] md:px-5">
           <Wordmark />
 
           <nav
@@ -58,6 +59,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-1">
+            <ThemeToggle />
             <Link
               href="/cart"
               className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[0.8rem] uppercase tracking-[0.22em] text-bone transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-bone/5"
@@ -121,6 +123,7 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <ThemeToggle variant="menu" />
         </nav>
       </div>
     </>

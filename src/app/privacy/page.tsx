@@ -34,8 +34,8 @@ export default function PrivacyPage() {
       <HouseSection title="What we do not do">
         <p>
           No accounts. No newsletters yet. No advertising pixels on this site.
-          Printful will see your address when we fulfil an order, because they
-          print and post the cloth.
+          Live checkout is on Etsy. Printful sees your address when they print
+          and post the cloth.
         </p>
       </HouseSection>
 

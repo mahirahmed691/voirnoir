@@ -57,11 +57,10 @@ export function CtaLink({
       ? "bg-bone text-ink hover:bg-bone/90"
       : "bg-transparent text-bone ring-1 ring-inset ring-bone/25 hover:bg-bone/5";
 
-  return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center gap-3 rounded-full py-2 pl-5 pr-2 text-sm tracking-wide transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] ${styles}`}
-    >
+  const className = `group inline-flex items-center gap-3 rounded-full py-2 pl-5 pr-2 text-sm tracking-wide transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] ${styles}`;
+
+  const inner = (
+    <>
       <span>{children}</span>
       <span
         className={`grid size-8 place-items-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px ${
@@ -71,6 +70,25 @@ export function CtaLink({
       >
         <ArrowUpRight size={14} weight="light" />
       </span>
+    </>
+  );
+
+  if (href.startsWith("http")) {
+    return (
+      <a
+        href={href}
+        className={className}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {inner}
     </Link>
   );
 }

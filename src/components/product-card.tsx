@@ -14,7 +14,7 @@ export function ProductCard({
       <Link
         href={`/shop/${product.slug}`}
         className="group block"
-        aria-label={`${product.name}, ${formatPrice(product.pricePence)}`}
+        aria-label={`${product.name}, ${formatPrice(product.pricePence, product.priceFrom)}`}
       >
         <div
           className={`rounded-[1.75rem] border border-bone/10 bg-bone/5 p-1.5 md:rounded-[2rem] ${
@@ -47,7 +47,7 @@ export function ProductCard({
             <p className="mt-1 text-sm text-bone-dim">{product.tagline}</p>
           </div>
           <p className="pt-1 text-sm tabular-nums text-bone">
-            {formatPrice(product.pricePence)}
+            {formatPrice(product.pricePence, product.priceFrom)}
           </p>
         </div>
       </Link>

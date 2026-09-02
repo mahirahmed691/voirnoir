@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { BrailleV } from "@/components/brand";
+import { Motto } from "@/components/motto";
+import { ETSY_SHOP } from "@/lib/catalog";
 
 export function SiteFooter() {
   return (
@@ -11,8 +13,8 @@ export function SiteFooter() {
             <p className="font-display text-3xl tracking-[0.04em]">voir noir</p>
           </div>
           <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-bone-dim">
-            See dark. Clothing made for our brother, printed one piece at a
-            time through Printful.
+            <Motto /> Clothing made for our brother, printed one piece at a
+            time through Printful and sold on Etsy.
           </p>
         </div>
 
@@ -25,6 +27,16 @@ export function SiteFooter() {
               <Link href="/shop" className="hover:text-clay">
                 Shop
               </Link>
+            </li>
+            <li>
+              <a
+                href={ETSY_SHOP}
+                className="hover:text-clay"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Etsy
+              </a>
             </li>
             <li>
               <Link href="/story" className="hover:text-clay">

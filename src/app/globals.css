@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+html[data-theme="dark"] {
   --ink: oklch(0.165 0.028 52);
   --ink-soft: oklch(0.205 0.026 52);
   --ink-lift: oklch(0.245 0.028 52);
@@ -8,7 +9,19 @@
   --bone-dim: oklch(0.7 0.024 72);
   --clay: oklch(0.58 0.09 48);
   --hairline: oklch(0.915 0.02 85 / 0.14);
+  --bezel: oklch(0.915 0.02 85 / 0.08);
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html[data-theme="light"] {
+  --ink: oklch(0.955 0.016 85);
+  --ink-soft: oklch(0.93 0.018 80);
+  --ink-lift: oklch(0.9 0.02 75);
+  --bone: oklch(0.24 0.03 52);
+  --bone-dim: oklch(0.44 0.028 55);
+  --clay: oklch(0.5 0.1 48);
+  --hairline: oklch(0.24 0.03 52 / 0.12);
+  --bezel: oklch(1 0.01 85 / 0.55);
 }
 
 @theme inline {
@@ -26,7 +39,13 @@
 html {
   background: var(--ink);
   color: var(--bone);
+  color-scheme: dark;
   scroll-behavior: smooth;
+  transition: background-color 700ms var(--ease);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {
@@ -34,6 +53,9 @@ body {
   color: var(--bone);
   font-family: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
   min-height: 100dvh;
+  transition:
+    background-color 700ms var(--ease),
+    color 700ms var(--ease);
 }
 
 ::selection {
@@ -68,6 +90,28 @@ body {
   opacity: 0.035;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html[data-theme="light"] .site-grain {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+.only-light {
+  display: none;
+}
+
+html[data-theme="light"] .only-dark {
+  display: none;
+}
+
+html[data-theme="light"] span.only-light,
+html[data-theme="light"] svg.only-light {
+  display: inline;
+}
+
+html[data-theme="light"] p.only-light {
+  display: block;
 }
 
 .font-display {

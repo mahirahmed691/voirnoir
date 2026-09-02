@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HousePage, HouseSection } from "@/components/house-page";
+import { ETSY_SHOP } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Shipping and returns",
   description:
-    "Voir Noir is printed on demand in the UK through Printful. How posting and returns work.",
+    "Voir Noir is made to order through Printful and posted to the UK. How posting and returns work.",
 };
 
 export default function ShippingPage() {
@@ -13,50 +14,47 @@ export default function ShippingPage() {
     <HousePage
       eyebrow="House"
       title="Post."
-      lede="Nothing sits in a warehouse. When you order, Printful makes the garment, then posts it. Most UK parcels arrive within a week of leaving the press."
+      lede="Nothing sits in a warehouse. When you order, Printful makes the piece, then posts it. Live orders go through our Etsy shop. UK delivery is free."
     >
       <HouseSection title="How it is made">
         <p>
-          Each piece is printed when you ask for it. Making usually takes two
-          to five working days. Then it is posted from Printful in the UK.
+          Each piece is printed when you ask for it. Making usually takes a few
+          working days. Then it is posted from Printful in the United States.
         </p>
       </HouseSection>
 
       <HouseSection title="UK">
         <p>
-          Once it is in the post, expect two to five working days. You will
-          have a tracking number when Printful has it. We will pass that on
-          when checkout is wired; until then we send it by hand with your
-          order.
+          Delivery to the UK is free on the Etsy listings. Once it is in the
+          post, allow a week or two. Etsy will send tracking when Printful has
+          the parcel.
         </p>
       </HouseSection>
 
-      <HouseSection title="Outside the UK">
+      <HouseSection title="Returns">
         <p>
-          We can post further. Duties and longer transit sit with the
-          destination. Write first if you are ordering from abroad so we can
-          be honest about time and cost.
-        </p>
-      </HouseSection>
-
-      <HouseSection title="If something is wrong">
-        <p>
-          Print-on-demand cloth is made for you, so we cannot take unworn
-          change-of-mind returns yet. If the piece arrives damaged, mis-sized
-          against the{" "}
-          <Link href="/size" className="text-bone underline underline-offset-4">
-            size guide
-          </Link>
-          , or not what you ordered, write within fourteen days with a
-          photograph or a clear description. We will replace or refund.
-        </p>
-      </HouseSection>
-
-      <HouseSection title="Questions">
-        <p>
+          Etsy listings accept returns and exchanges within thirty days. If
+          the piece arrives damaged or not what you ordered, write through
+          Etsy or to{" "}
           <Link href="/contact" className="text-bone underline underline-offset-4">
             hello@voirnoir.co.uk
           </Link>
+          .
+        </p>
+      </HouseSection>
+
+      <HouseSection title="Buy">
+        <p>
+          The shop on this site holds the bag. Checkout lives on{" "}
+          <a
+            href={ETSY_SHOP}
+            className="text-bone underline underline-offset-4"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Etsy
+          </a>{" "}
+          until we wire Printful here.
         </p>
       </HouseSection>
     </HousePage>

@@ -5,7 +5,7 @@ import { products } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "The first Voir Noir drop. Four black garments, printed on demand.",
+  description: "Voir Noir on Etsy. Garment-dyed tees, caps, and a tote, made to order.",
 };
 
 export default function ShopPage() {
@@ -19,8 +19,8 @@ export default function ShopPage() {
             Shop
           </h1>
           <p className="max-w-[40ch] text-sm leading-relaxed text-bone-dim">
-            {products.length} garments. Ink black. Made to order through
-            Printful, then posted from the UK.
+            {products.length} pieces from the Etsy shop. Garment-dyed, made to
+            order, then posted.
           </p>
         </div>
 

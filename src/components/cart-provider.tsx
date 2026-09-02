@@ -47,12 +47,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [announcement, setAnnouncement] = useState("");
 
   useEffect(() => {
-    const stored = loadItems();
-    const frame = requestAnimationFrame(() => {
-      setItems((current) => (current.length > 0 ? current : stored));
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setItems((current) => (current.length > 0 ? current : loadItems()));
       setReady(true);
     });
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {

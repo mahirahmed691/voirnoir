@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { CtaLink } from "@/components/brand";
 import { useCart } from "@/components/cart-provider";
 import type { Product } from "@/lib/catalog";
 
@@ -64,19 +65,22 @@ export function AddToCart({ product }: { product: Product }) {
         })}
       </div>
 
-      <button
-        type="button"
-        onClick={handleAdd}
-        className="group mt-8 inline-flex w-full items-center justify-between gap-3 rounded-full bg-bone py-2 pl-6 pr-2 text-sm tracking-wide text-ink transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] sm:w-auto"
-      >
-        <span aria-live="polite">{added ? "Added to bag" : "Add to bag"}</span>
-        <span
-          className="grid size-8 place-items-center rounded-full bg-ink/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px"
-          aria-hidden="true"
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <CtaLink href={product.etsyUrl}>Buy on Etsy</CtaLink>
+        <button
+          type="button"
+          onClick={handleAdd}
+          className="group inline-flex items-center gap-3 rounded-full py-2 pl-5 pr-2 text-sm tracking-wide text-bone ring-1 ring-inset ring-bone/25 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-bone/5 active:scale-[0.98]"
         >
-          +
-        </span>
-      </button>
+          <span aria-live="polite">{added ? "Added to bag" : "Add to bag"}</span>
+          <span
+            className="grid size-8 place-items-center rounded-full bg-bone/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </button>
+      </div>
     </div>
   );
 }
