@@ -128,7 +128,7 @@ export const products: Product[] = [
     pricePence: 1919,
     description:
       "A six-panel low-profile cap in cotton twill. Pre-curved visor, matching sweatband, Velcro strap. An everyday classic with a relaxed fit.",
-    feel: "The crown is soft and unstructured. The visor is the peak. The strap is hook-and-loop — a rasp, then it holds.",
+    feel: "The crown is soft and unstructured. The visor is the peak. The strap is hook-and-loop. A rasp, then it holds.",
     care: "Spot clean with cold water. Reshape the peak by hand. Do not machine wash.",
     fabric: "100% cotton twill. One size, about 58 cm. Made to order.",
     images: [
@@ -150,7 +150,7 @@ export const products: Product[] = [
     pricePence: 1919,
     description:
       "A structured six-panel cap with a mesh back and plastic adjustable closure. Mid-profile, hard buckram at the front, Permacurv visor. Built for a day in the sun.",
-    feel: "The front is stiff. The back is mesh and cool. The closure is plastic notches — click until it sits.",
+    feel: "The front is stiff. The back is mesh and cool. The closure is plastic notches. Click until it sits.",
     care: "Spot clean. Air dry. Do not crush the front panels.",
     fabric: "26% cotton, 74% polyester. Fits about 55–60 cm. Made to order.",
     images: [

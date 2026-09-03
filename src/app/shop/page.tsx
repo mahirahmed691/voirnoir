@@ -24,22 +24,30 @@ export default function ShopPage() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-12 md:grid-cols-12 md:gap-8">
+        <div className="mt-16 grid gap-10 md:grid-cols-12 md:gap-8">
           {lead ? (
-            <Reveal className="md:col-span-8">
+            <Reveal className="md:col-span-7">
               <ProductCard product={lead} featured />
             </Reveal>
           ) : null}
-          {rest.map((product, index) => (
-            <Reveal
-              key={product.slug}
-              className="md:col-span-4"
-              delay={100 + index * 70}
-            >
-              <ProductCard product={product} />
-            </Reveal>
-          ))}
+          <div className="grid gap-10 md:col-span-5">
+            {rest.slice(0, 2).map((product, index) => (
+              <Reveal key={product.slug} delay={80 + index * 80}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </div>
         </div>
+
+        {rest.slice(2).length > 0 ? (
+          <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+            {rest.slice(2).map((product, index) => (
+              <Reveal key={product.slug} delay={160 + index * 60}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </div>
+        ) : null}
       </div>
     </main>
   );

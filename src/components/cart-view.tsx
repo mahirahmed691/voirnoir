@@ -34,13 +34,28 @@ export function CartView() {
 
   if (lines.length === 0) {
     return (
-      <div className="max-w-xl">
-        <p className="text-lg leading-relaxed text-bone-dim">
-          The bag is empty. Tees, caps, and a tote, made to order and posted
-          from Printful.
-        </p>
-        <div className="mt-10">
-          <CtaLink href="/shop">Shop the house</CtaLink>
+      <div className="grid items-center gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <div className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[calc(2rem-0.375rem)] bg-ink-soft shadow-[inset_0_1px_0_var(--bezel)]">
+              <Image
+                src="/images/studio/tote.jpg"
+                alt="Natural cotton tote standing on dark limestone, black house mark, long handles falling"
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <p className="text-lg leading-relaxed text-bone-dim">
+            The bag is empty. Tees, caps, and a tote, made to order and posted
+            from Printful.
+          </p>
+          <div className="mt-10">
+            <CtaLink href="/shop">Shop the house</CtaLink>
+          </div>
         </div>
       </div>
     );
@@ -56,7 +71,8 @@ export function CartView() {
           >
             <Link
               href={`/shop/${line.slug}`}
-              className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ink-soft"
+              aria-label={`${line.product.name}, size ${line.size}`}
+              className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ink-soft ring-1 ring-inset ring-bone/10"
             >
               <Image
                 src={line.product.images[0].src}
@@ -86,7 +102,7 @@ export function CartView() {
                 <div className="inline-flex items-center rounded-full ring-1 ring-inset ring-bone/20">
                   <button
                     type="button"
-                    className="grid size-10 place-items-center"
+                    className="grid size-10 place-items-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.92]"
                     onClick={() =>
                       setQuantity(line.slug, line.size, line.quantity - 1)
                     }
@@ -99,7 +115,7 @@ export function CartView() {
                   </span>
                   <button
                     type="button"
-                    className="grid size-10 place-items-center disabled:opacity-40"
+                    className="grid size-10 place-items-center transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.92] disabled:opacity-40"
                     onClick={() =>
                       setQuantity(line.slug, line.size, line.quantity + 1)
                     }
@@ -140,8 +156,7 @@ export function CartView() {
             and posts it from the United States. By paying you agree to the{" "}
             <Link href="/terms" className="underline underline-offset-4 hover:text-bone">
               house terms
-            </Link>
-            .
+            </Link>.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-bone-dim">
             <Link href="/sign-in" className="underline underline-offset-4 hover:text-bone">

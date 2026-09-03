@@ -88,44 +88,38 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {hasBag ? (
-        <div
-          id="order"
-          className="rounded-[1.75rem] border border-bone/10 bg-bone/5 p-1.5"
-        >
-          <div className="rounded-[calc(1.75rem-0.375rem)] bg-ink-soft px-5 py-5">
-            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
-              Bag
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              {lines.map((line) => (
-                <li
-                  key={`${line.slug}-${line.size}`}
-                  className="flex justify-between gap-4"
-                >
-                  <span>
-                    {line.product.name}, size {line.size}
-                    {line.quantity > 1 ? ` × ${line.quantity}` : ""}
-                  </span>
-                  <span className="tabular-nums text-bone-dim">
-                    {formatPrice(line.product.pricePence * line.quantity)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 flex justify-between border-t border-bone/10 pt-4 text-sm">
-              <span>Total</span>
-              <span className="tabular-nums">{formatPrice(total)}</span>
-            </p>
-            <p className="mt-3 text-xs text-bone-dim">
-              Pay from the{" "}
-              <Link href="/cart" className="underline underline-offset-4">
-                bag
-              </Link>
-              . This is written into the email so we know which pieces you mean.
-            </p>
-          </div>
+        <div id="order">
+          <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
+            Bag
+          </p>
+          <ul className="mt-4 space-y-2 text-sm">
+            {lines.map((line) => (
+              <li
+                key={`${line.slug}-${line.size}`}
+                className="flex justify-between gap-4"
+              >
+                <span>
+                  {line.product.name}, size {line.size}
+                  {line.quantity > 1 ? ` × ${line.quantity}` : ""}
+                </span>
+                <span className="tabular-nums text-bone-dim">
+                  {formatPrice(line.product.pricePence * line.quantity)}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 flex justify-between border-t border-bone/10 pt-4 text-sm">
+            <span>Total</span>
+            <span className="tabular-nums">{formatPrice(total)}</span>
+          </p>
+          <p className="mt-3 text-xs text-bone-dim">
+            Pay from the{" "}
+            <Link href="/cart" className="underline underline-offset-4">
+              bag
+            </Link>. This is written into the email so we know which pieces you mean.
+          </p>
         </div>
       ) : null}
 
@@ -138,7 +132,7 @@ export function ContactForm() {
           name="name"
           autoComplete="name"
           required
-          className="min-h-12 rounded-2xl border border-bone/15 bg-ink-soft px-4 text-bone outline-none"
+          className="min-h-12 rounded-2xl border border-bone/15 bg-ink px-4 text-bone outline-none transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -151,7 +145,7 @@ export function ContactForm() {
           type="email"
           autoComplete="email"
           required
-          className="min-h-12 rounded-2xl border border-bone/15 bg-ink-soft px-4 text-bone outline-none"
+          className="min-h-12 rounded-2xl border border-bone/15 bg-ink px-4 text-bone outline-none transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
         />
         <p className="text-xs text-bone-dim">We only use this to reply.</p>
       </div>
@@ -165,7 +159,7 @@ export function ContactForm() {
           required
           rows={6}
           placeholder="Sizes, a paid order, the story, a greeting."
-          className="rounded-2xl border border-bone/15 bg-ink-soft px-4 py-3 text-bone outline-none placeholder:text-bone-dim/70"
+          className="rounded-2xl border border-bone/15 bg-ink px-4 py-3 text-bone outline-none placeholder:text-bone-dim/70 transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
         />
       </div>
       <button

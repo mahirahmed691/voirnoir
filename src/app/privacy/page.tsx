@@ -13,6 +13,11 @@ export default function PrivacyPage() {
       eyebrow="House"
       title="Privacy."
       lede="The shop is small. We keep as little as we can. This page is the whole of it."
+      image={{
+        src: "/images/story-room.png",
+        alt: "A dark bedroom at night, black clothing over a wooden chair, a thin strip of streetlight under the door",
+        caption: "The book",
+      }}
     >
       <HouseSection title="What stays on your machine">
         <p>

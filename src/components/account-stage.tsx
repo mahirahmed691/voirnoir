@@ -51,7 +51,7 @@ export function AccountStage({
           }
         >
           <div className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[calc(2rem-0.375rem)] lg:aspect-[4/5]">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[calc(2rem-0.375rem)] bg-ink-soft shadow-[inset_0_1px_0_var(--bezel)] lg:aspect-[4/5]">
               <Image
                 src={image.src}
                 alt={image.alt}

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AddToCart } from "@/components/add-to-cart";
 import { CtaLink } from "@/components/brand";
+import { ProductCard } from "@/components/product-card";
 import { ProductGallery } from "@/components/product-gallery";
 import { ProductJsonLd } from "@/components/product-json-ld";
 import { formatPrice, getProduct, products } from "@/lib/catalog";
@@ -42,7 +43,7 @@ export default async function ProductPage({ params }: Props) {
           <ProductGallery images={product.images} />
         </div>
 
-        <div className="lg:col-span-5 lg:pt-8">
+        <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start lg:pt-4">
           <p className="text-[0.7rem] uppercase tracking-[0.22em] text-clay">
             {product.color.name}
           </p>
@@ -110,12 +111,17 @@ export default async function ProductPage({ params }: Props) {
 
       {others.length > 0 ? (
         <aside className="mx-auto mt-28 max-w-[1400px]">
-          <h2 className="font-display text-3xl tracking-wide">Also in the house</h2>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {others.map((item) => (
-              <CtaLink key={item.slug} href={`/shop/${item.slug}`} variant="ghost">
-                {item.name}
-              </CtaLink>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <h2 className="font-display text-3xl tracking-wide md:text-5xl">
+              Also in the house
+            </h2>
+            <CtaLink href="/shop" variant="ghost">
+              All pieces
+            </CtaLink>
+          </div>
+          <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {others.slice(0, 3).map((item) => (
+              <ProductCard key={item.slug} product={item} />
             ))}
           </div>
         </aside>

@@ -14,6 +14,11 @@ export default function TermsPage() {
       eyebrow="House"
       title="Terms."
       lede="Pay on this site. Printful makes the piece. These are the rules of the house."
+      image={{
+        src: "/images/studio/cap-dad.jpg",
+        alt: "Black dad hat on dark linen, antique buckle catching a clay-gold light",
+        caption: "The house",
+      }}
     >
       <HouseSection title="Who sells">
         <p>
@@ -58,8 +63,7 @@ export default function TermsPage() {
           How little else we keep is on{" "}
           <Link href="/privacy" className="text-bone underline underline-offset-4">
             Privacy
-          </Link>
-          .
+          </Link>.
         </p>
       </HouseSection>
     </HousePage>

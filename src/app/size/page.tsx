@@ -15,6 +15,11 @@ export default function SizePage() {
       eyebrow="House"
       title="Size."
       lede="Measurements are the garment laid flat, in centimetres. Find the chest by folding along the seams. Blanks vary by a centimetre or two."
+      image={{
+        src: "/images/studio/tee-garment-2.jpg",
+        alt: "Collar and left chest of the garment-dyed tee, the tonal mark catching light",
+        caption: "Laid flat",
+      }}
     >
       <HouseSection title="Garment-dyed tee">
         <p>
@@ -72,12 +77,11 @@ export default function SizePage() {
 
       <HouseSection title="If you are unsure">
         <p>
-          Write to us with a garment you already wear — chest across, length,
-          how you want this one to sit — and we will answer in plain language.{" "}
+          Write to us with a garment you already wear. Chest across, length,
+          how you want this one to sit. We will answer in plain language.{" "}
           <Link href="/contact" className="text-bone underline underline-offset-4">
             Contact
-          </Link>
-          .
+          </Link>.
         </p>
       </HouseSection>
     </HousePage>

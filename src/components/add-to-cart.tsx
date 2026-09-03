@@ -52,7 +52,7 @@ export function AddToCart({ product }: { product: Product }) {
                 className="sr-only"
               />
               <span
-                className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-4 text-sm ring-1 ring-inset transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-4 text-sm ring-1 ring-inset transition-[color,background-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] ${
                   selected
                     ? "bg-bone text-ink ring-bone"
                     : "text-bone ring-bone/20 hover:ring-bone/50"

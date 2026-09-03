@@ -14,6 +14,11 @@ export default function ShippingPage() {
       eyebrow="House"
       title="Post."
       lede="Nothing sits in a warehouse. When you order on this site, Printful makes the piece, then posts it. UK and Ireland delivery is free."
+      image={{
+        src: "/images/studio/tote.jpg",
+        alt: "Natural cotton tote standing on dark limestone, black house mark, long handles falling",
+        caption: "Posted",
+      }}
     >
       <HouseSection title="How it is made">
         <p>
@@ -46,8 +51,7 @@ export default function ShippingPage() {
           Printful cuts and posts the garment. By paying you agree to the{" "}
           <Link href="/terms" className="text-bone underline underline-offset-4">
             house terms
-          </Link>
-          .
+          </Link>.
         </p>
       </HouseSection>
     </HousePage>
