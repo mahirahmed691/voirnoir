@@ -212,6 +212,15 @@ export function getProduct(slug: string) {
   return products.find((product) => product.slug === slug);
 }
 
+export function shopRooms() {
+  const cloth = products.filter(
+    (product) => !/cap|hat|tote/.test(product.slug),
+  );
+  const carry = products.filter((product) => product.slug === "tote");
+  const head = products.filter((product) => /cap|hat/.test(product.slug));
+  return { cloth, carry, head };
+}
+
 export function formatPrice(pence: number, from = false) {
   const value = new Intl.NumberFormat("en-GB", {
     style: "currency",

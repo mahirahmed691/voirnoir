@@ -1,15 +1,42 @@
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/product-card";
 import { Reveal } from "@/components/reveal";
-import { products } from "@/lib/catalog";
+import { shopRooms } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Shop",
   description: "Voir Noir. Garment-dyed tees, caps, and a tote, made to order.",
 };
 
+function Room({
+  title,
+  lede,
+  children,
+  className = "mt-20",
+}: {
+  title: string;
+  lede: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={className}>
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <h2 className="font-display text-4xl tracking-wide md:text-5xl">
+          {title}
+        </h2>
+        <p className="max-w-[40ch] text-sm leading-relaxed text-bone-dim">
+          {lede}
+        </p>
+      </div>
+      <div className="mt-10">{children}</div>
+    </section>
+  );
+}
+
 export default function ShopPage() {
-  const [lead, ...rest] = products;
+  const { cloth, carry, head } = shopRooms();
+  const [lead, ...rest] = cloth;
 
   return (
     <main id="content" className="px-6 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
@@ -19,34 +46,53 @@ export default function ShopPage() {
             Shop
           </h1>
           <p className="max-w-[40ch] text-sm leading-relaxed text-bone-dim">
-            {products.length} pieces. Pay on this site. Made to order, then
-            posted.
+            Pay on this site. Made to order, then posted.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-12 md:gap-8">
-          {lead ? (
-            <Reveal className="md:col-span-7">
-              <ProductCard product={lead} featured />
-            </Reveal>
-          ) : null}
-          <div className="grid gap-10 md:col-span-5">
-            {rest.slice(0, 2).map((product, index) => (
-              <Reveal key={product.slug} delay={80 + index * 80}>
-                <ProductCard product={product} />
+        <Room
+          className="mt-16"
+          title="Cloth"
+          lede="Garment-dyed, boxy, and the staple crewneck. Known by weight."
+        >
+          <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+            {lead ? (
+              <Reveal className="md:col-span-7">
+                <ProductCard product={lead} featured />
               </Reveal>
-            ))}
+            ) : null}
+            <div className="grid gap-10 md:col-span-5">
+              {rest.map((product, index) => (
+                <Reveal key={product.slug} delay={80 + index * 80}>
+                  <ProductCard product={product} />
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
+        </Room>
 
-        {rest.slice(2).length > 0 ? (
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3">
-            {rest.slice(2).map((product, index) => (
-              <Reveal key={product.slug} delay={160 + index * 60}>
-                <ProductCard product={product} />
-              </Reveal>
-            ))}
-          </div>
+        {carry.length > 0 ? (
+          <Room title="Carry" lede="Ten litres. Long handles. The bag of the house.">
+            <div className="grid gap-10 md:grid-cols-12">
+              {carry.map((product) => (
+                <Reveal key={product.slug} className="md:col-span-5">
+                  <ProductCard product={product} />
+                </Reveal>
+              ))}
+            </div>
+          </Room>
+        ) : null}
+
+        {head.length > 0 ? (
+          <Room title="Head" lede="Soft crown, mesh back, dad hats. One size, then the strap.">
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+              {head.map((product, index) => (
+                <Reveal key={product.slug} delay={index * 60}>
+                  <ProductCard product={product} />
+                </Reveal>
+              ))}
+            </div>
+          </Room>
         ) : null}
       </div>
     </main>

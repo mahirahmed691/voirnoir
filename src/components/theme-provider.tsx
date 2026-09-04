@@ -21,7 +21,7 @@ function applyTheme(theme: Theme) {
   meta?.setAttribute("content", theme === "light" ? LIGHT_COLOR : DARK_COLOR);
 }
 
-export const themeInitScript = `!function(){try{var t=localStorage.getItem("voirnoir-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark");document.documentElement.style.colorScheme=t==="light"?"light":"dark"}catch(e){document.documentElement.setAttribute("data-theme","dark")}}();`;
+export const themeInitScript = `!function(){try{var t=localStorage.getItem("voirnoir-theme");var light=t==="light";document.documentElement.setAttribute("data-theme",light?"light":"dark");document.documentElement.style.colorScheme=light?"light":"dark";var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",light?"#f3ece1":"#211c16")}catch(e){document.documentElement.setAttribute("data-theme","dark")}}();`;
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const toggle = useCallback(() => {

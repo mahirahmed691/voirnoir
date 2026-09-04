@@ -13,50 +13,13 @@ export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`group inline-flex items-center gap-3 text-bone ${className}`}
+      className={`group inline-flex items-center text-bone ${className}`}
       aria-label="Voir Noir, home"
     >
-      <BrailleV />
       <span className="font-display text-[1.35rem] leading-none tracking-[0.04em]">
         voir noir
       </span>
     </Link>
-  );
-}
-
-export function BrailleV({
-  size = 22,
-  className = "",
-}: {
-  size?: number;
-  className?: string;
-}) {
-  return (
-    <svg
-      width={size}
-      height={(size * 32) / 24}
-      viewBox="0 0 24 32"
-      aria-hidden="true"
-      className={`shrink-0 ${className}`.trim()}
-    >
-      <title>Braille letter V</title>
-      <circle cx="6" cy="6" r="2.15" fill="currentColor" />
-      <circle cx="18" cy="6" r="2.15" fill="currentColor" />
-      <circle cx="6" cy="16" r="2.15" fill="currentColor" />
-      <circle cx="6" cy="26" r="2.15" fill="currentColor" />
-      <circle cx="18" cy="26" r="2.15" fill="currentColor" />
-    </svg>
-  );
-}
-
-export function MonogramMark({ className = "" }: { className?: string }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`pointer-events-none absolute left-1/2 top-1/2 z-0 h-[1.06em] w-auto -translate-x-1/2 -translate-y-[46%] text-bone/30 ${className}`.trim()}
-    >
-      <BrailleV className="h-full w-auto" size={96} />
-    </span>
   );
 }
 

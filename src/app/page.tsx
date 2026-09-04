@@ -30,7 +30,7 @@ export default function HomePage() {
             Made for our brother
           </p>
           <h1 className="font-display mt-4 max-w-[8ch] text-[clamp(4.5rem,16vw,10.5rem)] leading-[0.82] tracking-wide">
-            <Motto mark />
+            <Motto />
           </h1>
           <p className="only-dark mt-6 max-w-[36ch] text-base leading-relaxed text-bone/85 md:text-lg">
             Voir Noir is French for see dark. Clothing from the night after

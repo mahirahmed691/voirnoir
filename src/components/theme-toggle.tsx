@@ -1,7 +1,6 @@
 "use client";
 
 import { Moon, Sun } from "@phosphor-icons/react";
-import { MonogramMark } from "@/components/brand";
 import { useTheme } from "@/components/theme-provider";
 
 export function ThemeToggle({
@@ -19,11 +18,8 @@ export function ThemeToggle({
         className="font-display mt-8 w-full border-b border-bone/10 py-5 text-left text-5xl leading-none text-bone"
         aria-label="Switch between see dark and see light"
       >
-        <span className="relative isolate inline-block">
-          <MonogramMark />
-          <span className="relative z-10 only-dark">See light</span>
-          <span className="relative z-10 only-light">See dark</span>
-        </span>
+        <span className="only-dark">See light</span>
+        <span className="only-light">See dark</span>
       </button>
     );
   }
@@ -37,10 +33,9 @@ export function ThemeToggle({
     >
       <Sun size={16} weight="light" className="only-dark" aria-hidden="true" />
       <Moon size={16} weight="light" className="only-light" aria-hidden="true" />
-      <span className="relative isolate hidden sm:inline">
-        <MonogramMark className="h-[1.5em] text-bone/28" />
-        <span className="relative z-10 only-dark">See light</span>
-        <span className="relative z-10 only-light">See dark</span>
+      <span className="hidden sm:inline">
+        <span className="only-dark">See light</span>
+        <span className="only-light">See dark</span>
       </span>
     </button>
   );

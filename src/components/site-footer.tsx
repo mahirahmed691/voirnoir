@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BrailleV } from "@/components/brand";
 import { Motto } from "@/components/motto";
 
 export function SiteFooter() {
@@ -7,15 +6,14 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-bone/10 px-6 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-[1400px]">
         <p className="font-display text-[clamp(3.25rem,9vw,8rem)] leading-[0.88] tracking-wide text-bone">
-          <Motto mark />
+          <Motto />
         </p>
 
         <div className="mt-16 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr] md:mt-20">
           <div>
-            <div className="flex items-center gap-3 text-bone">
-              <BrailleV />
-              <p className="font-display text-3xl tracking-[0.04em]">voir noir</p>
-            </div>
+            <p className="font-display text-3xl tracking-[0.04em] text-bone">
+              voir noir
+            </p>
             <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-bone-dim">
               Clothing made for our brother, printed one piece at a time
               through Printful.
