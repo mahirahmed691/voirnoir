@@ -5,6 +5,7 @@ import { CtaLink } from "@/components/brand";
 import { ClearBag } from "@/components/clear-bag";
 import { formatPrice } from "@/lib/catalog";
 import { recordPaidOrder } from "@/lib/house";
+import { notifyHouseOfPaidOrder } from "@/lib/notify";
 import { getPaidCheckoutSession, getPaidOrder } from "@/lib/order";
 
 export const metadata: Metadata = {
@@ -32,6 +33,11 @@ export default async function OrderSuccessPage({ searchParams }: Props) {
       await recordPaidOrder(session, userId);
     } catch (error) {
       console.error("Order book failed", error);
+    }
+    try {
+      await notifyHouseOfPaidOrder(session);
+    } catch (error) {
+      console.error("House mail failed", error);
     }
   }
   const order = await getPaidOrder(sessionId);

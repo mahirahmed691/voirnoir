@@ -21,10 +21,10 @@ export default function StoryPage() {
           <Motto mark />
         </h1>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-5">
+        <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:items-start">
+          <div className="lg:sticky lg:top-32 lg:col-span-5">
             <div className="rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[calc(2rem-0.375rem)]">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-[calc(2rem-0.375rem)] bg-ink-soft shadow-[inset_0_1px_0_var(--bezel)] lg:aspect-[4/5]">
                 <Image
                   src="/images/story-room.png"
                   alt="A dark bedroom at night, black clothing over a wooden chair, a thin strip of streetlight under the door"
@@ -35,9 +35,9 @@ export default function StoryPage() {
                 />
               </div>
             </div>
-          </Reveal>
+          </div>
 
-          <div className="space-y-8 text-lg leading-relaxed text-bone-dim lg:col-span-6 lg:col-start-7 lg:pt-10">
+          <div className="space-y-8 text-lg leading-relaxed text-bone-dim lg:col-span-6 lg:col-start-7 lg:pt-4">
             <Reveal>
               <p>
                 Voir Noir is French for see dark. The name is not a metaphor
@@ -77,6 +77,18 @@ export default function StoryPage() {
                 <CtaLink href="/shop">Shop the house</CtaLink>
               </div>
             </Reveal>
+          </div>
+        </div>
+
+        <div className="mt-24 rounded-[2rem] border border-bone/10 bg-bone/5 p-1.5 md:rounded-[2.5rem] md:p-2">
+          <div className="relative aspect-[5/4] overflow-hidden rounded-[calc(2rem-0.375rem)] bg-ink-soft shadow-[inset_0_1px_0_var(--bezel)] sm:aspect-[2/1] md:rounded-[calc(2.5rem-0.5rem)]">
+            <Image
+              src="/images/studio/tee-garment-2.jpg"
+              alt="Collar and left chest of the garment-dyed tee, the tonal mark catching light"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </article>

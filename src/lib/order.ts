@@ -56,7 +56,10 @@ export async function getPaidOrder(
 ): Promise<PaidOrder | null> {
   const session = await getPaidCheckoutSession(sessionId);
   if (!session) return null;
+  return paidOrderFromSession(session);
+}
 
+export function paidOrderFromSession(session: Stripe.Checkout.Session): PaidOrder {
   return {
     reference: session.id.slice(-8).toUpperCase(),
     email: session.customer_details?.email ?? null,

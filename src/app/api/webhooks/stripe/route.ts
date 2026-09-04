@@ -1,4 +1,5 @@
 import { recordPaidOrder } from "@/lib/house";
+import { notifyHouseOfPaidOrder } from "@/lib/notify";
 import { fulfilPrintfulOrder } from "@/lib/printful";
 import { getStripe } from "@/lib/stripe";
 
@@ -36,6 +37,11 @@ export async function POST(request: Request) {
         await recordPaidOrder(session);
       } catch (error) {
         console.error("Order book failed", error);
+      }
+      try {
+        await notifyHouseOfPaidOrder(session);
+      } catch (error) {
+        console.error("House mail failed", error);
       }
       try {
         await fulfilPrintfulOrder(session);

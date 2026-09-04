@@ -34,36 +34,42 @@ export function AddToCart({ product }: { product: Product }) {
           Size guide
         </Link>
       </div>
-      <div
-        role="radiogroup"
-        aria-labelledby="size-label"
-        className="mt-3 flex flex-wrap gap-2"
-      >
-        {product.sizes.map((option) => {
-          const selected = option === size;
-          return (
-            <label key={option} className="cursor-pointer">
-              <input
-                type="radio"
-                name="size"
-                value={option}
-                checked={selected}
-                onChange={() => setSize(option)}
-                className="sr-only"
-              />
-              <span
-                className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-4 text-sm ring-1 ring-inset transition-[color,background-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] ${
-                  selected
-                    ? "bg-bone text-ink ring-bone"
-                    : "text-bone ring-bone/20 hover:ring-bone/50"
-                }`}
-              >
-                {option}
-              </span>
-            </label>
-          );
-        })}
-      </div>
+      {product.sizes.length > 1 ? (
+        <div
+          role="radiogroup"
+          aria-labelledby="size-label"
+          className="mt-3 flex flex-wrap gap-2"
+        >
+          {product.sizes.map((option) => {
+            const selected = option === size;
+            return (
+              <label key={option} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="size"
+                  value={option}
+                  checked={selected}
+                  onChange={() => setSize(option)}
+                  className="sr-only"
+                />
+                <span
+                  className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-4 text-sm ring-1 ring-inset transition-[color,background-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] ${
+                    selected
+                      ? "bg-bone text-ink ring-bone"
+                      : "text-bone ring-bone/20 hover:ring-bone/50"
+                  }`}
+                >
+                  {option}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      ) : (
+        <p className="mt-3 text-sm text-bone-dim" aria-describedby="size-label">
+          {size || "One size"}
+        </p>
+      )}
 
       <div className="mt-8 flex flex-wrap items-center gap-3">
         <CtaButton onClick={handleAdd}>

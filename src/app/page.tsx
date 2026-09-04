@@ -77,16 +77,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {rest.slice(2).length > 0 ? (
-          <div className="mx-auto mt-10 grid max-w-[1400px] gap-10 sm:grid-cols-2 md:grid-cols-3">
-            {rest.slice(2).map((product, index) => (
-              <Reveal key={product.slug} delay={200 + index * 60}>
-                <ProductCard product={product} />
-              </Reveal>
-            ))}
-          </div>
-        ) : null}
-
         <Reveal className="mx-auto mt-14 max-w-[1400px]" delay={280}>
           <CtaLink href="/shop">All pieces</CtaLink>
         </Reveal>
